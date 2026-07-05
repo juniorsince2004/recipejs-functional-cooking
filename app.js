@@ -1,3 +1,5 @@
+const RecipeApp = (() => {
+
 const recipes = [
     {
         id: 1,
@@ -5,7 +7,35 @@ const recipes = [
         time: 25,
         difficulty: "easy",
         description: "A creamy Italian pasta dish made with eggs, cheese, pancetta, and black pepper.",
-        category: "pasta"
+        category: "pasta",
+        // NEW: Add ingredients array
+        ingredients: [
+            "400g spaghetti",
+            "200g pancetta or guanciale",
+            "4 large eggs",
+            "100g Pecorino Romano cheese",
+            "Black pepper",
+            "Salt"
+        ],
+        // NEW: Add steps array (can include nested steps)
+        steps: [
+            "Bring a large pot of salted water to boil",
+            "Cook spaghetti according to package directions",
+            {
+                text: "Prepare the sauce",
+                substeps: [
+                    "Beat eggs in a bowl",
+                    "Grate cheese and add to eggs",
+                    "Add generous black pepper",
+                    "Mix well"
+                ]
+            },
+            "Cook pancetta in a large pan until crispy",
+            "Drain pasta, reserve 1 cup pasta water",
+            "Add hot pasta to pancetta pan (off heat)",
+            "Quickly mix in egg mixture, adding pasta water to create creamy sauce",
+            "Serve immediately with extra cheese"
+        ]
     },
     {
         id: 2,
@@ -13,7 +43,24 @@ const recipes = [
         time: 45,
         difficulty: "medium",
         description: "Tender chicken pieces in a creamy, spiced tomato sauce.",
-        category: "curry"
+        category: "curry",
+        ingredients: ["Chicken", "Yogurt", "Tomato puree", "Cream", "Garlic", "Spices"],
+        steps: [
+            "Marinate chicken in yogurt and spices for at least 1 hour",
+            "Grill or pan-fry chicken until cooked through",
+            {
+                text: "Make the sauce",
+                substeps: [
+                    "Heat oil in a large pan",
+                    "Add garlic and sauté until fragrant",
+                    "Add tomato puree and spices",
+                    "Simmer for 10 minutes",
+                    "Stir in cream and cook until thickened"
+                ]
+            },
+            "Add cooked chicken to sauce and simmer for 5 minutes",
+            "Serve with rice or naan bread"
+        ]
     },
     // TODO: Add 6 more recipe objects following the same structure
      {
@@ -22,7 +69,25 @@ const recipes = [
         time: 180,
         difficulty: "hard",
         description: "Buttery, flaky French pastries that require patience but deliver amazing results.",
-        category: "baking"
+        category: "baking",
+        ingredients: ["Flour", "Butter", "Yeast", "Milk", "Sugar"],
+        steps: [
+            "Mix flour, yeast, sugar, and salt in a bowl",
+            "Gradually add milk and knead into a dough",
+            "Let dough rise until doubled in size",
+            {
+                text: "Laminate the dough",
+                substeps: [
+                    "Roll out dough into a rectangle",
+                    "Place cold butter in the center and fold dough over it",
+                    "Roll out again and fold into thirds",
+                    "Repeat rolling and folding process 3-4 times"
+                ]
+            },  
+            "Cut dough into triangles and shape into croissants",
+            "Let croissants rise until puffy",
+            "Bake at 200°C (400°F) for 15-20 minutes until golden brown"
+        ]
     },
     {
         id: 4,
@@ -30,7 +95,14 @@ const recipes = [
         time: 15,
         difficulty: "easy",
         description: "Fresh vegetables, feta cheese, and olives tossed in olive oil and herbs.",
-        category: "salad"
+        category: "salad",
+        ingredients: ["Cucumber", "Tomato", "Feta", "Olives"],
+        steps: [
+            "Chop vegetables into bite-sized pieces",
+            "Combine vegetables in a large bowl",
+            "Add crumbled feta cheese and olives",
+            "Toss with olive oil and herbs"
+        ]
     },
     {
         id: 5,
@@ -38,15 +110,27 @@ const recipes = [
         time: 120,
         difficulty: "hard",
         description: "Tender beef fillet coated with mushroom duxelles and wrapped in puff pastry.",
-        category: "meat"
+        category: "meat",
+        ingredients: ["Beef", "Mushrooms", "Prosciutto", "Puff pastry"],
+        steps: [
+            "Sear beef fillet on all sides and let cool",
+            "Make mushroom duxelles by finely chopping mushrooms and cooking until dry",
+        ]
     },
     {
         id: 6,
-        title: "vegitable stir-fry",
+        title: "Vegetable Stir-Fry",
         time: 30,
         difficulty: "easy",
         description: "A nutritious bowl filled with roasted vegetables, grains, and a tahini dressing.",
-        category: "salad"
+        category: "salad",
+        ingredients: ["Broccoli", "Carrots", "Soy sauce", "Ginger"],
+        steps: [
+            "Chop vegetables into bite-sized pieces",
+            "Heat oil in a wok or large pan",
+            "Add vegetables and stir-fry until tender",
+            "Add soy sauce and ginger, and cook for another minute"
+        ]
     },
     {
         id: 7,
@@ -54,7 +138,15 @@ const recipes = [
         time: 30,
         difficulty: "medium",
         description: "Thai stir-fried rice noodles with shrimp, peanuts, and tangy tamarind sauce.",
-        category: "noodles"
+        category: "noodles",
+        ingredients: ["Noodles", "Shrimp", "Peanuts", "Tamarind", "Egg"],
+        steps: [
+            "Cook rice noodles according to package instructions",
+            "Heat oil in a wok or large pan",
+            "Add shrimp and cook until pink",
+            "Add vegetables and stir-fry until tender",
+            "Add tamarind sauce and egg, and cook for another minute"
+        ]
     },
     {
         id: 8,
@@ -62,7 +154,15 @@ const recipes = [
         time: 60,
         difficulty: "medium",
         description: "Classic Italian pizza with fresh mozzarella, tomatoes, and basil.",
-        category: "pizza"
+        category: "pizza",
+        ingredients: ["Dough", "Tomatoes", "Mozzarella", "Basil"],
+        steps: [
+            "Prepare pizza dough and let it rise",
+            "Roll out dough into a circle",
+            "Spread tomato sauce evenly over the dough",
+            "Add torn mozzarella pieces and fresh basil leaves",
+            "Bake at 220°C (425°F) for 12-15 minutes until crust is golden"
+        ]
     },
 ];
 // STATE MANAGEMENT
@@ -78,6 +178,48 @@ console.log(recipeContainer);
 const filterButtons = document.querySelectorAll('.filter-btn');
 const sortButtons = document.querySelectorAll('.sort-btn');
 
+// Recursive function to render steps (handles nesting)
+const renderSteps = (steps, level = 0) => {
+    // Determine the CSS class based on nesting level
+    const listClass = level === 0 ? 'steps-list' : 'substeps-list';
+    
+    let html = `<ol class="${listClass}">`;
+    
+    steps.forEach(step => {
+        // TODO: Check if step is a string or object
+        if (typeof step === 'string') {
+            // Simple step - just add as list item
+            html += `<li>${step}</li>`;
+        } else {
+            // Nested step - has text and substeps
+            html += `<li>`;
+            html += step.text;  // Main step text
+            
+            // TODO: Recursively call renderSteps for substeps
+            if (step.substeps && step.substeps.length > 0) {
+                // RECURSIVE CALL - this is the key!
+                html += renderSteps(step.substeps, level + 1);
+            }
+            
+            html += `</li>`;
+        }
+    });
+    
+    html += `</ol>`;
+    return html;
+};
+
+// Create complete steps HTML for a recipe
+const createStepsHTML = (steps) => {
+    // TODO: Check if steps exist
+    if (!steps || steps.length === 0) {
+        return '<p>No steps available</p>';
+    }
+    
+    // Call the recursive function to generate the nested list
+    return renderSteps(steps);
+};
+
 // Function to create HTML for a single recipe card
 const createRecipeCard = (recipe) => {
     return `
@@ -88,7 +230,28 @@ const createRecipeCard = (recipe) => {
                 <span class="difficulty ${recipe.difficulty}">${recipe.difficulty}</span>
             </div>
             <p>${recipe.description}</p>
-        </div>
+           
+            <div class="card-actions">
+                <button class="toggle-btn" data-recipe-id="${recipe.id}" data-toggle="steps">
+                    📋 Show Steps
+                </button>
+                <button class="toggle-btn" data-recipe-id="${recipe.id}" data-toggle="ingredients">
+                    🥗 Show Ingredients
+                </button>
+            </div>
+
+              <div class="ingredients-container" data-recipe-id="${recipe.id}">
+                <h4>Ingredients:</h4>
+                <ul>
+                    ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                </ul>
+            </div>
+
+             <div class="steps-container" data-recipe-id="${recipe.id}">
+                <h4>Cooking Steps:</h4>
+                ${createStepsHTML(recipe.steps)}
+            </div>
+       </div>
     `;
 };
 console.log(createRecipeCard(recipes[0]));
@@ -199,6 +362,34 @@ const updateActiveButtons = () => {
 };
 
 // EVENT HANDLERS
+// Handle toggle button clicks using event delegation
+const handleToggleClick = (event) => {
+    // Check if clicked element is a toggle button
+    if (!event.target.classList.contains('toggle-btn')) {
+        return;  // Not a toggle button, ignore
+    }
+    
+    const button = event.target;
+    const recipeId = button.dataset.recipeId;
+    const toggleType = button.dataset.toggle;  // "steps" or "ingredients"
+    
+    // TODO: Find the corresponding container
+    const containerClass = toggleType === 'steps' ? 'steps-container' : 'ingredients-container';
+    const container = document.querySelector(`.${containerClass}[data-recipe-id="${recipeId}"]`);
+    
+     // TODO: Toggle visibility
+    if (container) {
+        container.classList.toggle('visible');
+
+        // Update button text
+        const isVisible = container.classList.contains('visible');
+        if (toggleType === 'steps') {
+            button.textContent = isVisible ? '📋 Hide Steps' : '📋 Show Steps';
+        } else {
+            button.textContent = isVisible ? '🥗 Hide Ingredients' : '🥗 Show Ingredients';
+        }
+    }
+};
 // Handle filter button clicks
 const handleFilterClick = (event) => {
     const filterType = event.target.dataset.filter;
@@ -234,6 +425,10 @@ const setupEventListeners = () => {
     sortButtons.forEach(btn => {
         btn.addEventListener('click', handleSortClick);
     });
+
+    // NEW: Event delegation for toggle buttons
+    // One listener on parent handles all toggle buttons
+    recipeContainer.addEventListener('click', handleToggleClick);
     
     console.log('Event listeners attached!');
 };
@@ -249,7 +444,22 @@ const renderRecipes = (recipesToRender) => {
 };
 // INITIALIZATION
 // Set up event listeners on page load
-setupEventListeners();
-
+  const init = () => {
+     console.log('RecipeApp initializing...');
+     setupEventListeners();    
 // Initial render with default filter/sort
-updateDisplay();
+     updateDisplay();
+   console.log('RecipeApp ready!');
+  };
+
+// PUBLIC API - What's accessible from outside
+    return {
+        init: init,
+        // Expose updateDisplay so filter/sort handlers can call it
+        updateDisplay: updateDisplay
+    };
+    
+})();  // <-- IIFE is immediately invoked
+
+// START THE APP
+RecipeApp.init();
