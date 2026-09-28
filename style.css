@@ -42,6 +42,7 @@ main {
 }
 /* Recipe Card */
 .recipe-card {
+    position: relative;
     background:white;
     border-radius:12px;
     box-shadow:0 4px 6px rgba(0,0,0,0.1);
@@ -198,7 +199,6 @@ main {
 
 /* Ingredients Container */
 .ingredients-container {
-    /* TODO: Set display to none (hidden by default) */
     display: none;
     margin-top: 1rem;
     padding: 1rem;
@@ -207,7 +207,6 @@ main {
 }
 
 .ingredients-container.visible {
-    /* TODO: Set display to block (visible when toggled) */
     display: block;
 }
 
@@ -238,7 +237,6 @@ main {
 
 /* Steps Container */
 .steps-container {
-    /* TODO: Set display to none (hidden by default) */
     display: none;
     margin-top: 1rem;
     padding: 1rem;
@@ -247,7 +245,6 @@ main {
 }
 
 .steps-container.visible {
-    /* TODO: Set display to block (visible when toggled) */
     display: block;
 }
 
@@ -289,7 +286,6 @@ main {
 
 /* Nested substeps */
 .substeps-list {
-    /* TODO: Add styles for nested list */
     list-style: none;
     padding-left: 1.5rem;
     margin-top: 0.5rem;
@@ -319,4 +315,95 @@ main {
 
 .substeps-list .substeps-list li {
     font-size: 0.85rem;
+}
+
+/* Search Container */
+.search-container {
+    max-width: 500px;
+    margin: 1.5rem auto 0;
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.85rem 3rem 0.85rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#search-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    outline: none;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Recipe Counter */
+.recipe-info {
+    text-align: center;
+    margin: 0 0 1rem;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Favorite Button on Cards */
+.favorite-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.08);
+}   
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .search-container {
+        margin-top: 1rem;
+    }
+    
+    .recipe-card {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .filter-btn,
+    .sort-btn {
+        width: 100%;
+    }
 }
