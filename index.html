@@ -5,21 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RecipeJS - Your Functional Cooking Companion</title>
     <link rel="stylesheet" href="style.css">
-    <!-- TODO: Link your CSS file here -->
 </head>
 <body>
-    <header>
-        <h1>"🍳 RecipeJS"</h1>
-        <p>"Your Functional Cooking Companion"</p>
-    </header>
-    <!-- TODO: Add header section -->
+<header>
+    <h1>🍳 RecipeJS</h1>
+    <p>Your Functional Cooking Companion</p>
+    
+    <!-- NEW: Search Container -->
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search recipes or ingredients..."
+            autocomplete="off"
+        >
+        <button id="clear-search" class="clear-btn" style="display: none;">
+            ✕
+        </button>
+    </div>
+</header>
     <main>
+        <!-- NEW: Controls Section -->
+    <section class="controls">
+        <!-- After controls section -->
+        <div class="recipe-info">
+            <p id="recipe-count">Showing 8 of 8 recipes</p>
+        </div>
+        <!-- Filter Buttons -->
+        <div class="filter-group">
+            <h3>Filter by Difficulty:</h3>
+            <div class="button-group">
+                <button class="filter-btn active" data-filter="all">Show All</button>
+                <button class="filter-btn" data-filter="easy">Easy</button>
+                <button class="filter-btn" data-filter="medium">Medium</button>
+                <button class="filter-btn" data-filter="hard">Hard</button>
+                <button class="filter-btn" data-filter="quick">Quick Recipes (< 30 min)</button>
+                <button class="filter-btn" data-filter="favorites">❤️ Favorites Only</button>
+            </div>
+        </div>
+
+        <!-- Sort Buttons -->
+        <div class="sort-group">
+            <h3>Sort by:</h3>
+            <div class="button-group">
+                <button class="sort-btn" data-sort="name">Name (A-Z)</button>
+                <button class="sort-btn" data-sort="time">Time (Fastest First)</button>
+                <button class="sort-btn" data-sort="none">Default Order</button>
+            </div>
+        </div>
+    </section>
         <div id="recipe-container">
             <!-- Recipe cards will be rendered here by JavaScript -->
         </div>
     </main>
-    <!-- TODO: Add main section -->
     <script src="app.js"></script>
-    <!-- TODO: Link your JavaScript file here -->
 </body>
 </html>
